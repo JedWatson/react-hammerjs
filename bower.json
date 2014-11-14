@@ -1,0 +1,35 @@
+{
+  "name": "react-hammerjs",
+  "main": "dist/react-hammerjs.min.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/JedWatson/react-hammerjs",
+  "authors": [
+    "Jed Watson"
+  ],
+  "description": "ReactJS / HammerJS integration. Support touch events in your React app.",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "tap",
+    "tappable",
+    "touch",
+    "hammer",
+    "hammerjs",
+    "mobile"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}
