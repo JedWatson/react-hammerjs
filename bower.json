@@ -1,7 +1,7 @@
 {
   "name": "react-hammerjs",
   "main": "dist/react-hammerjs.min.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/JedWatson/react-hammerjs",
   "authors": [
     "Jed Watson"
