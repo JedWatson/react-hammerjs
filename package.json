@@ -2,7 +2,7 @@
   "name": "react-hammerjs",
   "version": "0.1.0",
   "description": "ReactJS / HammerJS integration. Support touch events in your React app.",
-  "main": "dist/react-hammerjs.js",
+  "main": "src/Hammer.js",
   "author": "Jed Watson",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,6 @@
     "merge-stream": "~0.1.6",
     "vinyl-source-stream": "~1.0.0"
   },
-  "browser": "src/Hammer.js",
   "browserify-shim": {
     "react": "global:React"
   },
