@@ -19,7 +19,7 @@ var privateProps = {
  * ================
  */
 
-var Hammer = React.createClass({
+var HammerComponent = React.createClass({
 	
 	displayName: 'Hammer',
 	
@@ -67,4 +67,4 @@ var Hammer = React.createClass({
 	
 });
 
-module.exports = Tappable;
+module.exports = HammerComponent;
