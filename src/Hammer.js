@@ -60,8 +60,8 @@ var HammerComponent = React.createClass({
 			if (!privateProps[i]) {
 				props[i] = this.props[i];
 			}
-		});
-		
+		}, this);
+
 		return React.createElement(this.props.component, props, this.props.children);
 	}
 	
