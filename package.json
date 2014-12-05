@@ -10,23 +10,23 @@
     "url": "https://github.com/JedWatson/react-hammerjs.git"
   },
   "dependencies": {
-    "hammerjs": "~2.0.4",
-    "react": "~0.12.0"
+    "hammerjs": "^2.0.4",
+    "react": "^0.12.0"
   },
   "devDependencies": {
-    "browserify": "~6.2.0",
-    "browserify-shim": "~3.8.0",
-    "chalk": "~0.5.1",
-    "del": "~0.1.3",
-    "gulp": "~3.8.10",
-    "gulp-bump": "~0.1.11",
-    "gulp-git": "~0.5.4",
-    "gulp-rename": "~1.2.0",
-    "gulp-streamify": "~0.0.5",
-    "gulp-uglify": "~1.0.1",
-    "gulp-util": "~3.0.1",
-    "merge-stream": "~0.1.6",
-    "vinyl-source-stream": "~1.0.0"
+    "browserify": "^6.2.0",
+    "browserify-shim": "^3.8.0",
+    "chalk": "^0.5.1",
+    "del": "^0.1.3",
+    "gulp": "^3.8.10",
+    "gulp-bump": "^0.1.11",
+    "gulp-git": "^0.5.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-streamify": "^0.0.5",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
+    "merge-stream": "^0.1.6",
+    "vinyl-source-stream": "^1.0.0"
   },
   "browserify-shim": {
     "react": "global:React"
