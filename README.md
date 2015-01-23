@@ -3,6 +3,8 @@ React-HammerJS
 
 [ReactJS](http://facebook.github.io/react/) / [HammerJS](http://hammerjs.github.io) integration. Support touch events in your React app.
 
+If you're looking for native tap event handling in ReactJS, check out my [react-tappable](https://github.com/JedWatson/react-tappable) package.
+
 
 ## Installation
 
