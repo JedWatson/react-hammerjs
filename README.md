@@ -37,11 +37,12 @@ The following events are supported:
 
 You can also provide an `action` property which is like the `onTap` event handler but will also be fired `onPress`.
 
-
+The `options` property can be used to configure the Hammer manager. These properties will be merged with the default ones.
 ### Example
 
 ```
 var Hammer = require('react-hammerjs');
+var options = {touchAction:true, recognizers:{tap:{time:600, threshold:100}}};
 
-<Hammer onTap={handleTap}>Tap Me</Hammer>
+<Hammer onTap={handleTap} options={options}>Tap Me</Hammer>
 ```
