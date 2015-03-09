@@ -1,6 +1,6 @@
 {
   "name": "react-hammerjs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "ReactJS / HammerJS integration. Support touch events in your React app.",
   "main": "src/Hammer.js",
   "author": "Jed Watson",
