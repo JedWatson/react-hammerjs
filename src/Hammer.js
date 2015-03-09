@@ -36,14 +36,14 @@ var HammerComponent = React.createClass({
 	
 	componentDidMount: function() {
 		this.hammer = new Hammer(this.getDOMNode());
-		if (this.props.action)		this.hammer.on('tap press', 	                                             this.props.action);
-		if (this.props.onTap)		this.hammer.on('tap',			                                     this.props.onTap);
-		if (this.props.onDoubleTap)	this.hammer.on('doubletap',		                                     this.props.onDoubleTap);
-		if (this.props.onPan)		this.hammer.on('pan panmove panend pancancel panleft panright panup pandow', this.props.onPan);
-		if (this.props.onSwipe)		this.hammer.on('swipe',		               				     this.props.onSwipe);
-		if (this.props.onPress)		this.hammer.on('press',							     this.props.onPress);
-		if (this.props.onPinch)		this.hammer.on('pinch',						      	     this.props.onPinch);
-		if (this.props.onRotate)	this.hammer.on('rotate',	          				     this.props.onRotate);
+		if (this.props.action)          this.hammer.on('tap press', this.props.action);
+		if (this.props.onTap)           this.hammer.on('tap', this.props.onTap);
+		if (this.props.onDoubleTap)     this.hammer.on('doubletap', this.props.onDoubleTap);
+		if (this.props.onPan)           this.hammer.on('pan panmove panend pancancel panleft panright panup pandow', this.props.onPan);
+		if (this.props.onSwipe)         this.hammer.on('swipe', this.props.onSwipe);
+		if (this.props.onPress)         this.hammer.on('press', this.props.onPress);
+		if (this.props.onPinch)         this.hammer.on('pinch', this.props.onPinch);
+		if (this.props.onRotate)        this.hammer.on('rotate', this.props.onRotate);
 	},
 	
 	componentWillUnmount: function() {
