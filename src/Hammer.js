@@ -46,8 +46,8 @@ var HammerComponent = React.createClass({
 		if (this.props.onRotate)        this.hammer.on('rotate', this.props.onRotate);
 
 		if (this.props.vertical) {
-			debugger;
-			this.hammer.set({ direction: Hammer.DIRECTION_ALL });
+			this.hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+			this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 		}
 	},
 	
