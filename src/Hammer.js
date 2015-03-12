@@ -8,9 +8,7 @@ var privateProps = {
 	onTap: true,
 	onDoubleTap: true,
 	onPan: true,
-	onVerticalPan: true,
 	onSwipe: true,
-	onVerticalSwipe: true,
 	onPress: true,
 	onPinch: true,
 	onRotate: true
@@ -42,15 +40,15 @@ var HammerComponent = React.createClass({
 		if (this.props.onTap)           this.hammer.on('tap', this.props.onTap);
 		if (this.props.onDoubleTap)     this.hammer.on('doubletap', this.props.onDoubleTap);
 		if (this.props.onPan)           this.hammer.on('pan', this.props.onPan);
-		if (this.props.onVerticalPan)   this.hammer.on('pan panup pandown panstart ' +
-																									 'panmove panend pancancel',
-																										this.props.onVerticalPan);
 		if (this.props.onSwipe)         this.hammer.on('swipe', this.props.onSwipe);
-		if (this.props.onVerticalSwipe) this.hammer.on('swipe swipeup swipedown',
-																									 this.props.onVerticalSwipe);
 		if (this.props.onPress)         this.hammer.on('press', this.props.onPress);
 		if (this.props.onPinch)         this.hammer.on('pinch', this.props.onPinch);
 		if (this.props.onRotate)        this.hammer.on('rotate', this.props.onRotate);
+
+		if (this.props.vertical) {
+			debugger;
+			this.hammer.set({ direction: Hammer.DIRECTION_ALL });
+		}
 	},
 	
 	componentWillUnmount: function() {
