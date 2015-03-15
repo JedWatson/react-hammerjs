@@ -37,6 +37,8 @@ The following events are supported:
 
 You can also provide an `action` property which is like the `onTap` event handler but will also be fired `onPress`.
 
+If you provide the prop `vertical={true}` the `pan` and `swipe` events will support vertical gestures.
+
 
 ### Example
 
