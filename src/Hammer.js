@@ -53,8 +53,10 @@ var HammerComponent = React.createClass({
 	},
 	
 	componentWillUnmount: function() {
-		this.hammer.stop();
-		this.hammer.destroy();
+		if (this.hammer) {
+		    this.hammer.stop();
+		    this.hammer.destroy();
+		}
 		this.hammer = null;
 	},
 	
