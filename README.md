@@ -39,11 +39,13 @@ You can also provide an `action` property which is like the `onTap` event handle
 
 If you provide the prop `vertical={true}` the `pan` and `swipe` events will support vertical gestures.
 
+The `options` property can be used to configure the Hammer manager. These properties will be merged with the default ones.
 
 ### Example
 
 ```
 var Hammer = require('react-hammerjs');
+var options = {touchAction:true, recognizers:{tap:{time:600, threshold:100}}};
 
-<Hammer onTap={handleTap}>Tap Me</Hammer>
+<Hammer onTap={handleTap} options={options}>Tap Me</Hammer>
 ```
