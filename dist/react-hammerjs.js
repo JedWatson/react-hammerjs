@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Hammer = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
-var React = (typeof window !== "undefined" ? window.React : typeof global !== "undefined" ? global.React : null),
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null),
 	Hammer = require('hammerjs');
 
 var privateProps = {
@@ -22,22 +22,22 @@ var privateProps = {
  */
 
 var HammerComponent = React.createClass({
-	
+
 	displayName: 'Hammer',
-	
+
 	propTypes: {
 		component: React.PropTypes.any,
 		className: React.PropTypes.string
 	},
-	
+
 	getDefaultProps: function() {
 		return {
 			component: 'span'
 		};
 	},
-	
+
 	componentDidMount: function() {
-		this.hammer = new Hammer(this.getDOMNode());
+		this.hammer = new Hammer(React.findDOMNode(this));
 
 		if (this.props.options) {
 			Object.keys(this.props.options).forEach(function(option) {
@@ -69,7 +69,7 @@ var HammerComponent = React.createClass({
 		if (this.props.onPinch)         this.hammer.on('pinch', this.props.onPinch);
 		if (this.props.onRotate)        this.hammer.on('rotate', this.props.onRotate);
 	},
-	
+
 	componentWillUnmount: function() {
 		if (this.hammer) {
 		    this.hammer.stop();
@@ -77,11 +77,11 @@ var HammerComponent = React.createClass({
 		}
 		this.hammer = null;
 	},
-	
+
 	render: function() {
-		
+
 		var props = {};
-		
+
 		Object.keys(this.props).forEach(function(i) {
 			if (!privateProps[i]) {
 				props[i] = this.props[i];
@@ -90,7 +90,7 @@ var HammerComponent = React.createClass({
 
 		return React.createElement(this.props.component, props, this.props.children);
 	}
-	
+
 });
 
 module.exports = HammerComponent;
