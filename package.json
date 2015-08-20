@@ -35,6 +35,8 @@
     "react": "global:React"
   },
   "scripts": {
+    "build": "gulp build",
+    "release": "gulp publish:tag && gulp publish:npm",
     "test": "echo \"no tests yet\" && exit 0"
   },
   "keywords": [
