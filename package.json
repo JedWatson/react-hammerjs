@@ -1,6 +1,6 @@
 {
   "name": "react-hammerjs",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "ReactJS / HammerJS integration. Support touch events in your React app.",
   "main": "src/Hammer.js",
   "author": "Jed Watson",
@@ -36,6 +36,9 @@
   },
   "scripts": {
     "build": "gulp build",
+    "bump": "gulp bump",
+    "bump:minor": "gulp bump:minor",
+    "bump:major": "gulp bump:major",
     "release": "gulp publish:tag && gulp publish:npm",
     "test": "echo \"no tests yet\" && exit 0"
   },
