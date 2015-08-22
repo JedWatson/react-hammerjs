@@ -1,7 +1,10 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Hammer = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
-var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null),
-	Hammer = require('hammerjs');
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+
+// require('hammerjs') when in a browser. This is safe because Hammer is only
+// invoked in componentDidMount, which is not executed on the server.
+var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
 
 var privateProps = {
 	component: true,
@@ -30,19 +33,19 @@ var HammerComponent = React.createClass({
 		className: React.PropTypes.string
 	},
 
-	getDefaultProps: function() {
+	getDefaultProps: function () {
 		return {
 			component: 'span'
 		};
 	},
 
-	componentDidMount: function() {
+	componentDidMount: function () {
 		this.hammer = new Hammer(React.findDOMNode(this));
 
 		if (this.props.options) {
-			Object.keys(this.props.options).forEach(function(option) {
+			Object.keys(this.props.options).forEach(function (option) {
 				if (option === 'recognizers') {
-					Object.keys(this.props.options.recognizers).forEach(function(gesture) {
+					Object.keys(this.props.options.recognizers).forEach(function (gesture) {
 						var recognizer = this.hammer.get(gesture);
 						recognizer.set(this.props.options.recognizers[gesture]);
 					}, this);
@@ -60,29 +63,29 @@ var HammerComponent = React.createClass({
 			this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 		}
 
-		if (this.props.action)          this.hammer.on('tap press', this.props.action);
-		if (this.props.onTap)           this.hammer.on('tap', this.props.onTap);
-		if (this.props.onDoubleTap)     this.hammer.on('doubletap', this.props.onDoubleTap);
-		if (this.props.onPan)           this.hammer.on('pan', this.props.onPan);
-		if (this.props.onSwipe)         this.hammer.on('swipe', this.props.onSwipe);
-		if (this.props.onPress)         this.hammer.on('press', this.props.onPress);
-		if (this.props.onPinch)         this.hammer.on('pinch', this.props.onPinch);
-		if (this.props.onRotate)        this.hammer.on('rotate', this.props.onRotate);
+		if (this.props.action) this.hammer.on('tap press', this.props.action);
+		if (this.props.onTap) this.hammer.on('tap', this.props.onTap);
+		if (this.props.onDoubleTap) this.hammer.on('doubletap', this.props.onDoubleTap);
+		if (this.props.onPan) this.hammer.on('pan', this.props.onPan);
+		if (this.props.onSwipe) this.hammer.on('swipe', this.props.onSwipe);
+		if (this.props.onPress) this.hammer.on('press', this.props.onPress);
+		if (this.props.onPinch) this.hammer.on('pinch', this.props.onPinch);
+		if (this.props.onRotate) this.hammer.on('rotate', this.props.onRotate);
 	},
 
-	componentWillUnmount: function() {
+	componentWillUnmount: function () {
 		if (this.hammer) {
-		    this.hammer.stop();
-		    this.hammer.destroy();
+			this.hammer.stop();
+			this.hammer.destroy();
 		}
 		this.hammer = null;
 	},
 
-	render: function() {
+	render: function () {
 
 		var props = {};
 
-		Object.keys(this.props).forEach(function(i) {
+		Object.keys(this.props).forEach(function (i) {
 			if (!privateProps[i]) {
 				props[i] = this.props[i];
 			}
