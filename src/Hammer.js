@@ -1,5 +1,8 @@
 var React = require('react');
-var Hammer = require('hammerjs');
+
+// require('hammerjs') when in a browser. This is safe because Hammer is only
+// invoked in componentDidMount, which is not executed on the server.
+var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
 
 var privateProps = {
 	component: true,
