@@ -1,5 +1,5 @@
-var React = require('react'),
-	Hammer = require('hammerjs');
+var React = require('react');
+var Hammer = require('hammerjs');
 
 var privateProps = {
 	component: true,
@@ -28,19 +28,19 @@ var HammerComponent = React.createClass({
 		className: React.PropTypes.string
 	},
 
-	getDefaultProps: function() {
+	getDefaultProps: function () {
 		return {
 			component: 'span'
 		};
 	},
 
-	componentDidMount: function() {
+	componentDidMount: function () {
 		this.hammer = new Hammer(React.findDOMNode(this));
 
 		if (this.props.options) {
-			Object.keys(this.props.options).forEach(function(option) {
+			Object.keys(this.props.options).forEach(function (option) {
 				if (option === 'recognizers') {
-					Object.keys(this.props.options.recognizers).forEach(function(gesture) {
+					Object.keys(this.props.options.recognizers).forEach(function (gesture) {
 						var recognizer = this.hammer.get(gesture);
 						recognizer.set(this.props.options.recognizers[gesture]);
 					}, this);
@@ -58,29 +58,29 @@ var HammerComponent = React.createClass({
 			this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 		}
 
-		if (this.props.action)          this.hammer.on('tap press', this.props.action);
-		if (this.props.onTap)           this.hammer.on('tap', this.props.onTap);
-		if (this.props.onDoubleTap)     this.hammer.on('doubletap', this.props.onDoubleTap);
-		if (this.props.onPan)           this.hammer.on('pan', this.props.onPan);
-		if (this.props.onSwipe)         this.hammer.on('swipe', this.props.onSwipe);
-		if (this.props.onPress)         this.hammer.on('press', this.props.onPress);
-		if (this.props.onPinch)         this.hammer.on('pinch', this.props.onPinch);
-		if (this.props.onRotate)        this.hammer.on('rotate', this.props.onRotate);
+		if (this.props.action) this.hammer.on('tap press', this.props.action);
+		if (this.props.onTap) this.hammer.on('tap', this.props.onTap);
+		if (this.props.onDoubleTap) this.hammer.on('doubletap', this.props.onDoubleTap);
+		if (this.props.onPan) this.hammer.on('pan', this.props.onPan);
+		if (this.props.onSwipe) this.hammer.on('swipe', this.props.onSwipe);
+		if (this.props.onPress) this.hammer.on('press', this.props.onPress);
+		if (this.props.onPinch) this.hammer.on('pinch', this.props.onPinch);
+		if (this.props.onRotate) this.hammer.on('rotate', this.props.onRotate);
 	},
 
-	componentWillUnmount: function() {
+	componentWillUnmount: function () {
 		if (this.hammer) {
-		    this.hammer.stop();
-		    this.hammer.destroy();
+			this.hammer.stop();
+			this.hammer.destroy();
 		}
 		this.hammer = null;
 	},
 
-	render: function() {
+	render: function () {
 
 		var props = {};
 
-		Object.keys(this.props).forEach(function(i) {
+		Object.keys(this.props).forEach(function (i) {
 			if (!privateProps[i]) {
 				props[i] = this.props[i];
 			}
