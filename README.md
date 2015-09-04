@@ -32,6 +32,7 @@ The following events are supported:
 * `onPan`
 * `onSwipe`
 * `onPress`
+* `onPressUp`
 * `onPinch`
 * `onRotate`
 
