@@ -13,6 +13,7 @@ var privateProps = {
 	onPan: true,
 	onSwipe: true,
 	onPress: true,
+	onPressUp: true,
 	onPinch: true,
 	onRotate: true
 };
@@ -67,6 +68,7 @@ var HammerComponent = React.createClass({
 		if (this.props.onPan) this.hammer.on('pan', this.props.onPan);
 		if (this.props.onSwipe) this.hammer.on('swipe', this.props.onSwipe);
 		if (this.props.onPress) this.hammer.on('press', this.props.onPress);
+		if (this.props.onPressUp) this.hammer.on('pressup', this.props.onPressUp);
 		if (this.props.onPinch) this.hammer.on('pinch', this.props.onPinch);
 		if (this.props.onRotate) this.hammer.on('rotate', this.props.onRotate);
 	},
