@@ -7,7 +7,6 @@ var React = (typeof window !== "undefined" ? window['React'] : typeof global !==
 var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
 
 var privateProps = {
-	component: true,
 	children: true,
 	action: true,
 	onTap: true,
@@ -30,14 +29,7 @@ var HammerComponent = React.createClass({
 	displayName: 'Hammer',
 
 	propTypes: {
-		component: React.PropTypes.any,
 		className: React.PropTypes.string
-	},
-
-	getDefaultProps: function () {
-		return {
-			component: 'span'
-		};
 	},
 
 	componentDidMount: function () {
@@ -93,9 +85,10 @@ var HammerComponent = React.createClass({
 			}
 		}, this);
 
-		return React.createElement(this.props.component, props, this.props.children);
+		// Reuse the child provided
+		// This makes it flexible to use whatever element is wanted (div, ul, etc)
+		return React.cloneElement(React.Children.only(this.props.children), props);
 	}
-
 });
 
 module.exports = HammerComponent;
