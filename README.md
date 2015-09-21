@@ -19,11 +19,9 @@ npm install react-hammerjs --save
 
 ## Usage
 
-React-HammerJS generates a React component (default `<span>`) which then has Hammer events bound to it so it can fire the handlers specified.
+React-HammerJS wraps a React component, binding Hammer events to it so it can fire the handlers specified.
 
 ## Properties
-
-The `component` prop can be used to change the component rendered, which will have the touch events bound to it. It may be a string (any valid DOM tag) or a React component that implements the `getDOMNode()` method.
 
 The following events are supported:
 
@@ -48,5 +46,5 @@ The `options` property can be used to configure the Hammer manager. These proper
 var Hammer = require('react-hammerjs');
 var options = {touchAction:true, recognizers:{tap:{time:600, threshold:100}}};
 
-<Hammer onTap={handleTap} options={options}>Tap Me</Hammer>
+<Hammer onTap={handleTap} options={options}><div>Tap Me</div></Hammer>
 ```
