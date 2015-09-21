@@ -35,7 +35,7 @@ var DEPENDENCIES = [
  */
 
 gulp.task('prepare:dist', function (done) {
-	del([DIST_PATH], done);
+	return del([DIST_PATH]);
 });
 
 gulp.task('build:dist', ['prepare:dist'], function () {
