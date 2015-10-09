@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 // require('hammerjs') when in a browser. This is safe because Hammer is only
 // invoked in componentDidMount, which is not executed on the server.
@@ -31,7 +32,7 @@ var HammerComponent = React.createClass({
 	},
 
 	componentDidMount: function () {
-		this.hammer = new Hammer(React.findDOMNode(this));
+		this.hammer = new Hammer(ReactDOM.findDOMNode(this));
 
 		if (this.props.options) {
 			Object.keys(this.props.options).forEach(function (option) {
