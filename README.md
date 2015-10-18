@@ -28,6 +28,8 @@ The following events are supported:
 * `onTap`
 * `onDoubleTap`
 * `onPan`
+* `onPanStart`
+* `onPanEnd`
 * `onSwipe`
 * `onPress`
 * `onPressUp`
@@ -44,7 +46,25 @@ The `options` property can be used to configure the Hammer manager. These proper
 
 ```
 var Hammer = require('react-hammerjs');
-var options = {touchAction:true, recognizers:{tap:{time:600, threshold:100}}};
+
+// Default options
+<Hammer onTap={handleTap} onSwipe={handleSwipe}><div>Tap Me</div></Hammer>
+
+// Custom options
+var options = {
+    touchAction:true,
+    recognizers: {
+        tap: {
+            time: 600,
+            threshold: 100
+        }
+    }
+};
 
 <Hammer onTap={handleTap} options={options}><div>Tap Me</div></Hammer>
 ```
+
+
+# License
+
+MIT Licensed. Copyright (c) Jed Watson 2015.
