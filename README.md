@@ -34,6 +34,8 @@ The following events are supported:
 * `onPress`
 * `onPressUp`
 * `onPinch`
+* `onPinchIn`
+* `onPinchOut`
 * `onRotate`
 
 You can also provide an `action` property which is like the `onTap` event handler but will also be fired `onPress`.
