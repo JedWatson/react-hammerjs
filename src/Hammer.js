@@ -27,6 +27,55 @@ var privateProps = {
  * ================
  */
 
+var handlerToEvent = {
+	action: 'tap press',
+	onTap: 'tap',
+	onDoubleTap: 'doubletap',
+	onPanStart: 'panstart',
+	onPan: 'pan',
+	onPanEnd: 'panend',
+	onSwipe: 'swipe',
+	onPress: 'press',
+	onPressUp: 'pressup',
+	onPinch: 'pinch',
+	onPinchIn: 'pinchin',
+	onPinchOut: 'pinchout',
+	onRotate: 'rotate'
+};
+function updateHammer(hammer, props) {
+	if (props.vertical) {
+		hammer.get('pan').set({direction: Hammer.DIRECTION_ALL});
+		hammer.get('swipe').set({direction: Hammer.DIRECTION_ALL});
+	} else {
+		hammer.get('pan').set({direction: Hammer.DIRECTION_HORIZONTAL});
+		hammer.get('swipe').set({direction: Hammer.DIRECTION_HORIZONTAL});
+	}
+
+	if (props.options) {
+		Object.keys(props.options).forEach(function (option) {
+			if (option === 'recognizers') {
+				Object.keys(props.options.recognizers).forEach(function (gesture) {
+					var recognizer = hammer.get(gesture);
+					recognizer.set(props.options.recognizers[gesture]);
+				}, this);
+			} else {
+				var key = option;
+				var optionObj = {};
+				optionObj[key] = props.options[option];
+				hammer.set(optionObj);
+			}
+		}, this);
+	}
+
+	Object.keys(props).forEach(function (p) {
+		var e = handlerToEvent[p];
+		if (e) {
+			hammer.off(e);
+			hammer.on(e, props[p]);
+		}
+	});
+}
+
 var HammerComponent = React.createClass({
 
 	displayName: 'Hammer',
@@ -37,41 +86,13 @@ var HammerComponent = React.createClass({
 
 	componentDidMount: function () {
 		this.hammer = new Hammer(ReactDOM.findDOMNode(this));
+		updateHammer(this.hammer, this.props);
+	},
 
-		if (this.props.options) {
-			Object.keys(this.props.options).forEach(function (option) {
-				if (option === 'recognizers') {
-					Object.keys(this.props.options.recognizers).forEach(function (gesture) {
-						var recognizer = this.hammer.get(gesture);
-						recognizer.set(this.props.options.recognizers[gesture]);
-					}, this);
-				} else {
-					var key = option;
-					var optionObj = {};
-					optionObj[key] = this.props.options[option];
-					this.hammer.set(optionObj);
-				}
-			}, this);
+	componentDidUpdate: function () {
+		if (this.hammer) {
+			updateHammer(this.hammer, this.props);
 		}
-
-		if (this.props.vertical) {
-			this.hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-			this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
-		}
-
-		if (this.props.action) this.hammer.on('tap press', this.props.action);
-		if (this.props.onTap) this.hammer.on('tap', this.props.onTap);
-		if (this.props.onDoubleTap) this.hammer.on('doubletap', this.props.onDoubleTap);
-		if (this.props.onPanStart) this.hammer.on('panstart', this.props.onPanStart);
-		if (this.props.onPan) this.hammer.on('pan', this.props.onPan);
-		if (this.props.onPanEnd) this.hammer.on('panend', this.props.onPanEnd);
-		if (this.props.onSwipe) this.hammer.on('swipe', this.props.onSwipe);
-		if (this.props.onPress) this.hammer.on('press', this.props.onPress);
-		if (this.props.onPressUp) this.hammer.on('pressup', this.props.onPressUp);
-		if (this.props.onPinch) this.hammer.on('pinch', this.props.onPinch);
-		if (this.props.onPinchIn) this.hammer.on('pinchin', this.props.onPinchIn);
-		if (this.props.onPinchOut) this.hammer.on('pinchout', this.props.onPinchOut);
-		if (this.props.onRotate) this.hammer.on('rotate', this.props.onRotate);
 	},
 
 	componentWillUnmount: function () {
@@ -83,7 +104,6 @@ var HammerComponent = React.createClass({
 	},
 
 	render: function () {
-
 		var props = {};
 
 		Object.keys(this.props).forEach(function (i) {
