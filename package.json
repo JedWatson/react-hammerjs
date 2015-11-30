@@ -1,6 +1,6 @@
 {
   "name": "react-hammerjs",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "ReactJS / HammerJS integration. Support touch events in your React app.",
   "main": "src/Hammer.js",
   "author": "Jed Watson",
@@ -10,7 +10,7 @@
     "url": "https://github.com/JedWatson/react-hammerjs.git"
   },
   "dependencies": {
-    "hammerjs": "^2.0.4"
+    "hammerjs": "https://github.com/hammerjs/hammer.js.git#189098ff7736f6ed2fce9a3d3e1f5a3afee085ba"
   },
   "devDependencies": {
     "browserify": "^11.2.0",
