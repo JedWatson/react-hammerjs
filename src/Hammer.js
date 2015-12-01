@@ -73,6 +73,13 @@ function updateHammer(hammer, props) {
 			}
 		}, this);
 	}
+	
+	if (props.recognizeWith) {
+		Object.keys(props.recognizeWith).forEach(function (gesture)) {
+			var recognizer = hammer.get(gesture)
+			recognizer.recognizeWith(props.recognizeWith[gesture])
+		}
+	}
 
 	Object.keys(props).forEach(function (p) {
 		var e = handlerToEvent[p];
