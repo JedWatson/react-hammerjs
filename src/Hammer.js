@@ -75,10 +75,10 @@ function updateHammer(hammer, props) {
 	}
 	
 	if (props.recognizeWith) {
-		Object.keys(props.recognizeWith).forEach(function (gesture)) {
-			var recognizer = hammer.get(gesture)
-			recognizer.recognizeWith(props.recognizeWith[gesture])
-		}
+		Object.keys(props.recognizeWith).forEach(function (gesture) {
+			var recognizer = hammer.get(gesture);
+			recognizer.recognizeWith(props.recognizeWith[gesture]);
+		}, this);
 	}
 
 	Object.keys(props).forEach(function (p) {
