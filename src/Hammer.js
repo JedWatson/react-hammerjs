@@ -13,12 +13,16 @@ var privateProps = {
 	onPan: true,
 	onPanStart: true,
 	onPanEnd: true,
+	onPanCancel: true,
 	onSwipe: true,
 	onPress: true,
 	onPressUp: true,
 	onPinch: true,
 	onPinchIn: true,
 	onPinchOut: true,
+	onPinchStart: true,
+	onPinchEnd: true,
+	onPinchCancel: true,
 	onRotate: true
 };
 
@@ -34,12 +38,15 @@ var handlerToEvent = {
 	onPanStart: 'panstart',
 	onPan: 'pan',
 	onPanEnd: 'panend',
+	onPanCancel: 'pancancel',
 	onSwipe: 'swipe',
 	onPress: 'press',
 	onPressUp: 'pressup',
 	onPinch: 'pinch',
 	onPinchIn: 'pinchin',
 	onPinchOut: 'pinchout',
+	onPinchStart: 'pinchstart',
+	onPinchEnd: 'pinchend',
 	onRotate: 'rotate'
 };
 function updateHammer(hammer, props) {
@@ -64,6 +71,13 @@ function updateHammer(hammer, props) {
 				optionObj[key] = props.options[option];
 				hammer.set(optionObj);
 			}
+		}, this);
+	}
+	
+	if (props.recognizeWith) {
+		Object.keys(props.recognizeWith).forEach(function (gesture) {
+			var recognizer = hammer.get(gesture);
+			recognizer.recognizeWith(props.recognizeWith[gesture]);
 		}, this);
 	}
 
