@@ -23,7 +23,7 @@ var privateProps = {
 	onPinchStart: true,
 	onPinchEnd: true,
 	onPinchCancel: true,
-	onRotate: true
+	onRotate: true,
 };
 
 /**
@@ -47,9 +47,9 @@ var handlerToEvent = {
 	onPinchOut: 'pinchout',
 	onPinchStart: 'pinchstart',
 	onPinchEnd: 'pinchend',
-	onRotate: 'rotate'
+	onRotate: 'rotate',
 };
-function updateHammer(hammer, props) {
+function updateHammer (hammer, props) {
 	if (props.vertical) {
 		hammer.get('pan').set({direction: Hammer.DIRECTION_ALL});
 		hammer.get('swipe').set({direction: Hammer.DIRECTION_ALL});
@@ -73,7 +73,7 @@ function updateHammer(hammer, props) {
 			}
 		}, this);
 	}
-	
+
 	if (props.recognizeWith) {
 		Object.keys(props.recognizeWith).forEach(function (gesture) {
 			var recognizer = hammer.get(gesture);
@@ -95,7 +95,7 @@ var HammerComponent = React.createClass({
 	displayName: 'Hammer',
 
 	propTypes: {
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
 	},
 
 	componentDidMount: function () {
