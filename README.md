@@ -69,4 +69,4 @@ var options = {
 
 # License
 
-MIT Licensed. Copyright (c) Jed Watson 2015.
+MIT Licensed. Copyright (c) Jed Watson 2016.
