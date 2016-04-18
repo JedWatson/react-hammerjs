@@ -54,7 +54,7 @@ var Hammer = require('react-hammerjs');
 
 // Custom options
 var options = {
-    touchAction:true,
+    touchAction:'compute',
     recognizers: {
         tap: {
             time: 600,
