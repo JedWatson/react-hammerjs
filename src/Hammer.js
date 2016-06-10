@@ -24,6 +24,10 @@ var privateProps = {
 	onPinchEnd: true,
 	onPinchCancel: true,
 	onRotate: true,
+	onRotateStart: true,
+	onRotateMove: true,
+	onRotateEnd: true,
+	onRotateCancel: true,
 };
 
 /**
@@ -48,6 +52,10 @@ var handlerToEvent = {
 	onPinchStart: 'pinchstart',
 	onPinchEnd: 'pinchend',
 	onRotate: 'rotate',
+	onRotateStart: 'rotatestart',
+	onRotateMove: 'rotatemove',
+	onRotateEnd: 'rotateend',
+	onRotateCancel: 'rotatecancel',
 };
 function updateHammer (hammer, props) {
 	if (props.vertical) {
