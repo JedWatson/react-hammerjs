@@ -6,6 +6,9 @@ var ReactDOM = require('react-dom');
 var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
 
 var privateProps = {
+	options: true,
+	recognizeWith: true,
+	vertical: true,
 	children: true,
 	action: true,
 	onTap: true,
