@@ -40,7 +40,7 @@ The following events are supported:
 
 You can also provide an `action` property which is like the `onTap` event handler but will also be fired `onPress`.
 
-If you provide the prop `vertical={true}` the `pan` and `swipe` events will support vertical gestures.
+If you provide the prop `direction` the `pan` and `swipe` events will support `Hammer.DIRECTION_(NONE/LEFT/RIGHT/UP/DOWN/HORIZONTAL/VERTICAL/ALL)`.
 
 The `options` property can be used to configure the Hammer manager. These properties will be merged with the default ones.
 
