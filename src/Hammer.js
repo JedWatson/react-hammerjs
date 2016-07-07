@@ -50,12 +50,15 @@ var handlerToEvent = {
 	onRotate: 'rotate',
 };
 function updateHammer (hammer, props) {
-	if (props.vertical) {
-		hammer.get('pan').set({direction: Hammer.DIRECTION_ALL});
-		hammer.get('swipe').set({direction: Hammer.DIRECTION_ALL});
-	} else {
-		hammer.get('pan').set({direction: Hammer.DIRECTION_HORIZONTAL});
-		hammer.get('swipe').set({direction: Hammer.DIRECTION_HORIZONTAL});
+	if(props.hasOwnProperty('vertical')) {
+		console.warn('vertical is deprecated, use `direction` instead')
+	}
+
+	var directionProp = props.direction;
+	if (directionProp || props.hasOwnProperty('vertical')) {
+		direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
+		hammer.get('pan').set({direction: Hammer[direction]});
+		hammer.get('swipe').set({direction: Hammer[direction]});
 	}
 
 	if (props.options) {
