@@ -28,15 +28,23 @@ The following events are supported:
 * `onTap`
 * `onDoubleTap`
 * `onPan`
-* `onPanStart`
+* `onPanCancel`
 * `onPanEnd`
-* `onSwipe`
-* `onPress`
-* `onPressUp`
+* `onPanStart`
 * `onPinch`
+* `onPinchCancel`
+* `onPinchEnd`
 * `onPinchIn`
 * `onPinchOut`
+* `onPinchStart`
+* `onPress`
+* `onPressUp`
 * `onRotate`
+* `onRotateCancel`
+* `onRotateEnd`
+* `onRotateMove`
+* `onRotateStart`
+* `onSwipe`
 
 You can also provide an `action` property which is like the `onTap` event handler but will also be fired `onPress`.
 
@@ -74,10 +82,10 @@ For example, to activate the `pinch` event on a `canvas` element:
 
 ```
 <Hammer
-    onPinch={handlePinch} 
+    onPinch={handlePinch}
     options={{
-       recognizers:{
-          pinch : { enable:true }
+       recognizers: {
+          pinch: { enable: true }
        }
     }}>
     <canvas></canvas>
