@@ -66,6 +66,27 @@ var options = {
 <Hammer onTap={handleTap} options={options}><div>Tap Me</div></Hammer>
 ```
 
+# Disabled Events
+
+As a default, the `pinch` and `rotate` events are disabled in hammer.js, as they would make actions on an element "blocking". You may enable these events using the options object which is a attribute on the react `<Hammer>` element.
+
+For example, to activate the `pinch` event on a `canvas` element:
+
+```
+<Hammer
+    onPinch={handlePinch} 
+    options={{
+       recognizers:{
+          pinch : { enable:true }
+       }
+    }}>
+    <canvas></canvas>
+</Hammer>
+```
+
+Disabled events are detailed in the hammer.js api documentation:
+- http://hammerjs.github.io/recognizer-rotate/
+- http://hammerjs.github.io/recognizer-pinch/
 
 # License
 
