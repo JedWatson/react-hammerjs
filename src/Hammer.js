@@ -6,31 +6,32 @@ var ReactDOM = require('react-dom');
 var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
 
 var privateProps = {
-	options: true,
-	recognizeWith: true,
-	vertical: true,
-	children: true,
 	action: true,
-	onTap: true,
+	children: true,
+	direction: true,
 	onDoubleTap: true,
 	onPan: true,
-	onPanStart: true,
-	onPanEnd: true,
 	onPanCancel: true,
-	onSwipe: true,
-	onPress: true,
-	onPressUp: true,
+	onPanEnd: true,
+	onPanStart: true,
 	onPinch: true,
+	onPinchCancel: true,
+	onPinchEnd: true,
 	onPinchIn: true,
 	onPinchOut: true,
 	onPinchStart: true,
-	onPinchEnd: true,
-	onPinchCancel: true,
+	onPress: true,
+	onPressUp: true,
 	onRotate: true,
-	onRotateStart: true,
-	onRotateMove: true,
-	onRotateEnd: true,
 	onRotateCancel: true,
+	onRotateEnd: true,
+	onRotateMove: true,
+	onRotateStart: true,
+	onSwipe: true,
+	onTap: true,
+	options: true,
+	recognizeWith: true,
+	vertical: true,
 };
 
 /**
@@ -40,36 +41,37 @@ var privateProps = {
 
 var handlerToEvent = {
 	action: 'tap press',
-	onTap: 'tap',
 	onDoubleTap: 'doubletap',
-	onPanStart: 'panstart',
 	onPan: 'pan',
-	onPanEnd: 'panend',
 	onPanCancel: 'pancancel',
-	onSwipe: 'swipe',
-	onPress: 'press',
-	onPressUp: 'pressup',
+	onPanEnd: 'panend',
+	onPanStart: 'panstart',
 	onPinch: 'pinch',
+	onPinchEnd: 'pinchend',
 	onPinchIn: 'pinchin',
 	onPinchOut: 'pinchout',
 	onPinchStart: 'pinchstart',
-	onPinchEnd: 'pinchend',
+	onPress: 'press',
+	onPressUp: 'pressup',
 	onRotate: 'rotate',
-	onRotateStart: 'rotatestart',
-	onRotateMove: 'rotatemove',
-	onRotateEnd: 'rotateend',
 	onRotateCancel: 'rotatecancel',
+	onRotateEnd: 'rotateend',
+	onRotateMove: 'rotatemove',
+	onRotateStart: 'rotatestart',
+	onSwipe: 'swipe',
+	onTap: 'tap',
 };
+
 function updateHammer (hammer, props) {
-	if(props.hasOwnProperty('vertical')) {
-		console.warn('vertical is deprecated, use `direction` instead')
+	if (props.hasOwnProperty('vertical')) {
+		console.warn('vertical is deprecated, please use `direction` instead');
 	}
 
 	var directionProp = props.direction;
 	if (directionProp || props.hasOwnProperty('vertical')) {
 		direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
-		hammer.get('pan').set({direction: Hammer[direction]});
-		hammer.get('swipe').set({direction: Hammer[direction]});
+		hammer.get('pan').set({ direction: Hammer[direction] });
+		hammer.get('swipe').set({ direction: Hammer[direction] });
 	}
 
 	if (props.options) {
