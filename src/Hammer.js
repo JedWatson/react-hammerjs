@@ -6,29 +6,8 @@ var ReactDOM = require('react-dom');
 var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
 
 var privateProps = {
-	action: true,
 	children: true,
 	direction: true,
-	onDoubleTap: true,
-	onPan: true,
-	onPanCancel: true,
-	onPanEnd: true,
-	onPanStart: true,
-	onPinch: true,
-	onPinchCancel: true,
-	onPinchEnd: true,
-	onPinchIn: true,
-	onPinchOut: true,
-	onPinchStart: true,
-	onPress: true,
-	onPressUp: true,
-	onRotate: true,
-	onRotateCancel: true,
-	onRotateEnd: true,
-	onRotateMove: true,
-	onRotateStart: true,
-	onSwipe: true,
-	onTap: true,
 	options: true,
 	recognizeWith: true,
 	vertical: true,
@@ -47,6 +26,7 @@ var handlerToEvent = {
 	onPanEnd: 'panend',
 	onPanStart: 'panstart',
 	onPinch: 'pinch',
+	onPinchCancel: 'pinchcancel',
 	onPinchEnd: 'pinchend',
 	onPinchIn: 'pinchin',
 	onPinchOut: 'pinchout',
@@ -61,6 +41,10 @@ var handlerToEvent = {
 	onSwipe: 'swipe',
 	onTap: 'tap',
 };
+
+Object.keys(handlerToEvent).forEach(function (i) {
+	privateProps[i] = true;
+});
 
 function updateHammer (hammer, props) {
 	if (props.hasOwnProperty('vertical')) {
