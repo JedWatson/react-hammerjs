@@ -53,7 +53,7 @@ function updateHammer (hammer, props) {
 
 	var directionProp = props.direction;
 	if (directionProp || props.hasOwnProperty('vertical')) {
-		direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
+		var direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
 		hammer.get('pan').set({ direction: Hammer[direction] });
 		hammer.get('swipe').set({ direction: Hammer[direction] });
 	}
