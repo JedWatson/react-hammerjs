@@ -1,3 +1,4 @@
+var PropTypes = require('prop-types');
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -95,7 +96,7 @@ var HammerComponent = React.createClass({
 	displayName: 'Hammer',
 
 	propTypes: {
-		className: React.PropTypes.string,
+		className: PropTypes.string,
 	},
 
 	componentDidMount: function () {

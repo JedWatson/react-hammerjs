@@ -25,6 +25,7 @@
     "gulp-uglify": "^1.5.4",
     "gulp-util": "^3.0.7",
     "merge-stream": "^1.0.0",
+    "prop-types": "^15.5.8",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "vinyl-source-stream": "^1.1.0"
@@ -34,7 +35,8 @@
   },
   "browserify-shim": {
     "react": "global:React",
-    "react-dom": "global:ReactDOM"
+    "react-dom": "global:ReactDOM",
+    "prop-types": "global:PropTypes"
   },
   "scripts": {
     "build": "NODE_ENV=production gulp build",
