@@ -91,34 +91,33 @@ function updateHammer (hammer, props) {
 	});
 }
 
-var HammerComponent = React.createClass({
+class HammerComponent extends React.Component {
+    static displayName = 'Hammer';
 
-	displayName: 'Hammer',
-
-	propTypes: {
+    static propTypes = {
 		className: PropTypes.string,
-	},
+	};
 
-	componentDidMount: function () {
+    componentDidMount() {
 		this.hammer = new Hammer(ReactDOM.findDOMNode(this));
 		updateHammer(this.hammer, this.props);
-	},
+	}
 
-	componentDidUpdate: function () {
+    componentDidUpdate() {
 		if (this.hammer) {
 			updateHammer(this.hammer, this.props);
 		}
-	},
+	}
 
-	componentWillUnmount: function () {
+    componentWillUnmount() {
 		if (this.hammer) {
 			this.hammer.stop();
 			this.hammer.destroy();
 		}
 		this.hammer = null;
-	},
+	}
 
-	render: function () {
+    render() {
 		var props = {};
 
 		Object.keys(this.props).forEach(function (i) {
@@ -131,6 +130,6 @@ var HammerComponent = React.createClass({
 		// This makes it flexible to use whatever element is wanted (div, ul, etc)
 		return React.cloneElement(React.Children.only(this.props.children), props);
 	}
-});
+}
 
 module.exports = HammerComponent;
