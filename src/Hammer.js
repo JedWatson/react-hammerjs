@@ -99,7 +99,7 @@ var HammerComponent = React.createClass({
 	},
 
 	componentDidMount: function () {
-		this.hammer = new Hammer(ReactDOM.findDOMNode(this));
+		this.hammer = new Hammer(this.domElement);
 		updateHammer(this.hammer, this.props);
 	},
 
@@ -125,6 +125,14 @@ var HammerComponent = React.createClass({
 				props[i] = this.props[i];
 			}
 		}, this);
+
+		var self = this;
+		props.ref = function(domElement) {
+			if (self.props.ref) {
+				self.props.ref(domElement);
+			}
+			self.domElement = domElement;
+		};
 
 		// Reuse the child provided
 		// This makes it flexible to use whatever element is wanted (div, ul, etc)
