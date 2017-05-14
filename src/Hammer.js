@@ -64,6 +64,9 @@ function updateHammer (hammer, props) {
 				Object.keys(props.options.recognizers).forEach(function (gesture) {
 					var recognizer = hammer.get(gesture);
 					recognizer.set(props.options.recognizers[gesture]);
+					if (props.options.recognizers[gesture].requireFailure) {
+						recognizer.requireFailure(props.options.recognizers[gesture].requireFailure);
+					}
 				}, this);
 			} else {
 				var key = option;
