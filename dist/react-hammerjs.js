@@ -1,5 +1,7 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Hammer = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
+var PropTypes = (typeof window !== "undefined" ? window['PropTypes'] : typeof global !== "undefined" ? global['PropTypes'] : null);
+var createReactClass = (typeof window !== "undefined" ? window['createReactClass'] : typeof global !== "undefined" ? global['createReactClass'] : null);
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 var ReactDOM = (typeof window !== "undefined" ? window['ReactDOM'] : typeof global !== "undefined" ? global['ReactDOM'] : null);
 
@@ -41,6 +43,10 @@ var handlerToEvent = {
 	onRotateMove: 'rotatemove',
 	onRotateStart: 'rotatestart',
 	onSwipe: 'swipe',
+	onSwipeRight: 'swiperight',
+	onSwipeLeft: 'swipeleft',
+	onSwipeUp: 'swipeup',
+	onSwipeDown: 'swipedown',
 	onTap: 'tap',
 };
 
@@ -55,7 +61,7 @@ function updateHammer (hammer, props) {
 
 	var directionProp = props.direction;
 	if (directionProp || props.hasOwnProperty('vertical')) {
-		direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
+		var direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
 		hammer.get('pan').set({ direction: Hammer[direction] });
 		hammer.get('swipe').set({ direction: Hammer[direction] });
 	}
@@ -66,6 +72,9 @@ function updateHammer (hammer, props) {
 				Object.keys(props.options.recognizers).forEach(function (gesture) {
 					var recognizer = hammer.get(gesture);
 					recognizer.set(props.options.recognizers[gesture]);
+					if (props.options.recognizers[gesture].requireFailure) {
+						recognizer.requireFailure(props.options.recognizers[gesture].requireFailure);
+					}
 				}, this);
 			} else {
 				var key = option;
@@ -92,16 +101,16 @@ function updateHammer (hammer, props) {
 	});
 }
 
-var HammerComponent = React.createClass({
+var HammerComponent = createReactClass({
 
 	displayName: 'Hammer',
 
 	propTypes: {
-		className: React.PropTypes.string,
+		className: PropTypes.string,
 	},
 
 	componentDidMount: function () {
-		this.hammer = new Hammer(ReactDOM.findDOMNode(this));
+		this.hammer = new Hammer(this.domElement);
 		updateHammer(this.hammer, this.props);
 	},
 
@@ -127,6 +136,14 @@ var HammerComponent = React.createClass({
 				props[i] = this.props[i];
 			}
 		}, this);
+
+		var self = this;
+		props.ref = function(domElement) {
+			if (self.props.ref) {
+				self.props.ref(domElement);
+			}
+			self.domElement = domElement;
+		};
 
 		// Reuse the child provided
 		// This makes it flexible to use whatever element is wanted (div, ul, etc)
