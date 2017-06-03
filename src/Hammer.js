@@ -92,9 +92,10 @@ function updateHammer (hammer, props) {
 }
 
 class HammerComponent extends React.Component {
-    static displayName = 'Hammer';
+  
+	displayName = 'Hammer';
 
-    static propTypes = {
+  propTypes = {
 		className: PropTypes.string,
 	};
 
