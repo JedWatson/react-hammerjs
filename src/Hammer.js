@@ -41,6 +41,10 @@ var handlerToEvent = {
 	onRotateMove: 'rotatemove',
 	onRotateStart: 'rotatestart',
 	onSwipe: 'swipe',
+	onSwipeRight: 'swiperight',
+	onSwipeLeft: 'swipeleft',
+	onSwipeUp: 'swipeup',
+	onSwipeDown: 'swipedown',
 	onTap: 'tap',
 };
 
@@ -55,7 +59,7 @@ function updateHammer (hammer, props) {
 
 	var directionProp = props.direction;
 	if (directionProp || props.hasOwnProperty('vertical')) {
-		direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
+		var direction = directionProp ? directionProp : (props.vertical ? 'DIRECTION_ALL' : 'DIRECTION_HORIZONTAL');
 		hammer.get('pan').set({ direction: Hammer[direction] });
 		hammer.get('swipe').set({ direction: Hammer[direction] });
 	}
@@ -66,6 +70,9 @@ function updateHammer (hammer, props) {
 				Object.keys(props.options.recognizers).forEach(function (gesture) {
 					var recognizer = hammer.get(gesture);
 					recognizer.set(props.options.recognizers[gesture]);
+					if (props.options.recognizers[gesture].requireFailure) {
+						recognizer.requireFailure(props.options.recognizers[gesture].requireFailure);
+					}
 				}, this);
 			} else {
 				var key = option;
@@ -100,8 +107,9 @@ var HammerComponent = createReactClass({
 		className: PropTypes.string,
 	},
 
-  componentDidMount: function() {
-		this.hammer = new Hammer(ReactDOM.findDOMNode(this));
+
+	componentDidMount: function () {
+		this.hammer = new Hammer(this.domElement);
 		updateHammer(this.hammer, this.props);
 	},
 
@@ -127,6 +135,14 @@ var HammerComponent = createReactClass({
 				props[i] = this.props[i];
 			}
 		}, this);
+
+		var self = this;
+		props.ref = function(domElement) {
+			if (self.props.ref) {
+				self.props.ref(domElement);
+			}
+			self.domElement = domElement;
+		};
 
 		// Reuse the child provided
 		// This makes it flexible to use whatever element is wanted (div, ul, etc)
