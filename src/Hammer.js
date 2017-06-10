@@ -1,5 +1,7 @@
+var PropTypes = require('prop-types');
 var React = require('react');
 var ReactDOM = require('react-dom');
+var createReactClass = require('create-react-class');
 
 // require('hammerjs') when in a browser. This is safe because Hammer is only
 // invoked in componentDidMount, which is not executed on the server.
@@ -97,26 +99,27 @@ function updateHammer (hammer, props) {
 	});
 }
 
-var HammerComponent = React.createClass({
-
+var HammerComponent = createReactClass({
+  
 	displayName: 'Hammer',
 
-	propTypes: {
-		className: React.PropTypes.string,
+  propTypes:{
+		className: PropTypes.string,
 	},
+
 
 	componentDidMount: function () {
 		this.hammer = new Hammer(this.domElement);
 		updateHammer(this.hammer, this.props);
 	},
 
-	componentDidUpdate: function () {
+  componentDidUpdate: function() {
 		if (this.hammer) {
 			updateHammer(this.hammer, this.props);
 		}
 	},
 
-	componentWillUnmount: function () {
+  componentWillUnmount: function() {
 		if (this.hammer) {
 			this.hammer.stop();
 			this.hammer.destroy();
@@ -124,7 +127,7 @@ var HammerComponent = React.createClass({
 		this.hammer = null;
 	},
 
-	render: function () {
+  render: function() {
 		var props = {};
 
 		Object.keys(this.props).forEach(function (i) {
