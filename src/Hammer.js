@@ -96,9 +96,7 @@ function updateHammer (hammer, props) {
 	});
 }
 
-export default class extends React.Component {
-
-	static displayName = 'ReactHammer'
+class ReactHammer extends React.Component {
 
 	componentDidMount() {
 		this.hammer = new Hammer(this.domElement);
@@ -138,3 +136,6 @@ export default class extends React.Component {
 		return React.cloneElement(React.Children.only(this.props.children), props);
 	}
 }
+
+ReactHammer.displayName = 'ReactHammer'
+export default ReactHammer
