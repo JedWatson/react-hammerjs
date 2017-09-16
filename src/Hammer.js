@@ -1,4 +1,7 @@
 // External Dependencies: React, Hammer
+// hope these 2 lines don't break iife build
+import React from 'react'
+import 'hammerjs'
 
 var privateProps = {
 	children: true,
