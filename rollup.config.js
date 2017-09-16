@@ -7,9 +7,5 @@ export default {
 		file: 'dist/react-hammerjs-iife.min.js',
 		format: 'iife',
 	},
-	external: [ 'react' ],
-	globals: {
-		react: 'React',
-	},
 	plugins: [uglify()],
 }

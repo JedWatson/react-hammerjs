@@ -1,5 +1,4 @@
-import React from 'react'
-console.log('hi', Hammer)
+// External Dependencies: React, Hammer
 
 var privateProps = {
 	children: true,
