@@ -9,7 +9,6 @@ export default {
 	external: [ 'react', 'hammerjs' ],
 	globals: {
 		react: 'React',
-		hammerjs: 'Hammer'
 	},
 	plugins: [uglify()],
 }

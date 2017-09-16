@@ -1,5 +1,6 @@
 import React from 'react'
-import Hammer from 'hammerjs'
+import 'hammerjs'
+console.log('hi', Hammer)
 
 var privateProps = {
 	children: true,
