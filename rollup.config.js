@@ -1,8 +1,15 @@
 import uglify from 'rollup-plugin-uglify'
 
 export default {
-	entry: 'src/Hammer.js',
-	dest: 'dist/react-hammerjs-iife.min.js',
-	format: 'iife',
+	input: 'src/Hammer.js',
+	output: {
+		file: 'dist/react-hammerjs-iife.min.js',
+		format: 'iife',
+	},
+	external: [ 'react', 'hammerjs' ],
+	globals: {
+		react: 'React',
+		hammerjs: 'Hammer'
+	},
 	plugins: [uglify()],
 }
