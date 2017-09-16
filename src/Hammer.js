@@ -137,4 +137,4 @@ export default class extends React.Component {
 		// This makes it flexible to use whatever element is wanted (div, ul, etc)
 		return React.cloneElement(React.Children.only(this.props.children), props);
 	}
-})
+}
