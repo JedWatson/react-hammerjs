@@ -1,9 +1,7 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-// require('hammerjs') when in a browser. This is safe because Hammer is only
-// invoked in componentDidMount, which is not executed on the server.
-var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
+// External Dependencies: React, Hammer
+// hope these 2 lines don't break iife build
+import React from 'react'
+import 'hammerjs'
 
 var privateProps = {
 	children: true,
@@ -24,6 +22,7 @@ var handlerToEvent = {
 	onPan: 'pan',
 	onPanCancel: 'pancancel',
 	onPanEnd: 'panend',
+	onPanMove: 'panmove',
 	onPanStart: 'panstart',
 	onPinch: 'pinch',
 	onPinchCancel: 'pinchcancel',
@@ -97,34 +96,28 @@ function updateHammer (hammer, props) {
 	});
 }
 
-var HammerComponent = React.createClass({
+class ReactHammer extends React.Component {
 
-	displayName: 'Hammer',
-
-	propTypes: {
-		className: React.PropTypes.string,
-	},
-
-	componentDidMount: function () {
+	componentDidMount() {
 		this.hammer = new Hammer(this.domElement);
 		updateHammer(this.hammer, this.props);
-	},
+	}
 
-	componentDidUpdate: function () {
+	componentDidUpdate() {
 		if (this.hammer) {
 			updateHammer(this.hammer, this.props);
 		}
-	},
+	}
 
-	componentWillUnmount: function () {
+	componentWillUnmount() {
 		if (this.hammer) {
 			this.hammer.stop();
 			this.hammer.destroy();
 		}
 		this.hammer = null;
-	},
+	}
 
-	render: function () {
+	render() {
 		var props = {};
 
 		Object.keys(this.props).forEach(function (i) {
@@ -133,18 +126,16 @@ var HammerComponent = React.createClass({
 			}
 		}, this);
 
-		var self = this;
-		props.ref = function(domElement) {
-			if (self.props.ref) {
-				self.props.ref(domElement);
-			}
-			self.domElement = domElement;
+		props.ref = domElement => {
+			if (this.props.ref) this.props.ref(domElement)
+			this.domElement = domElement;
 		};
 
 		// Reuse the child provided
 		// This makes it flexible to use whatever element is wanted (div, ul, etc)
 		return React.cloneElement(React.Children.only(this.props.children), props);
 	}
-});
+}
 
-module.exports = HammerComponent;
+ReactHammer.displayName = 'ReactHammer'
+export default ReactHammer
