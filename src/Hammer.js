@@ -127,7 +127,7 @@ class ReactHammer extends React.Component {
 		}, this);
 
 		props.ref = domElement => {
-			if (self.props.ref) this.props.ref(domElement)
+			if (this.props.ref) this.props.ref(domElement)
 			this.domElement = domElement;
 		};
 
