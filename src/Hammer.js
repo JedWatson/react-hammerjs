@@ -100,26 +100,26 @@ export default class extends React.Component {
 
 	static displayName = 'ReactHammer'
 
-	componentDidMount: function () {
+	componentDidMount() {
 		this.hammer = new Hammer(this.domElement);
 		updateHammer(this.hammer, this.props);
-	},
+	}
 
-	componentDidUpdate: function () {
+	componentDidUpdate() {
 		if (this.hammer) {
 			updateHammer(this.hammer, this.props);
 		}
-	},
+	}
 
-	componentWillUnmount: function () {
+	componentWillUnmount() {
 		if (this.hammer) {
 			this.hammer.stop();
 			this.hammer.destroy();
 		}
 		this.hammer = null;
-	},
+	}
 
-	render: function () {
+	render() {
 		var props = {};
 
 		Object.keys(this.props).forEach(function (i) {
@@ -128,16 +128,13 @@ export default class extends React.Component {
 			}
 		}, this);
 
-		var self = this;
-		props.ref = function(domElement) {
-			if (self.props.ref) {
-				self.props.ref(domElement);
-			}
-			self.domElement = domElement;
+		props.ref = domElement => {
+			if (self.props.ref) this.props.ref(domElement)
+			this.domElement = domElement;
 		};
 
 		// Reuse the child provided
 		// This makes it flexible to use whatever element is wanted (div, ul, etc)
 		return React.cloneElement(React.Children.only(this.props.children), props);
 	}
-});
+})
