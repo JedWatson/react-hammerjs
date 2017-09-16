@@ -24,6 +24,7 @@ var handlerToEvent = {
 	onPan: 'pan',
 	onPanCancel: 'pancancel',
 	onPanEnd: 'panend',
+	onPanMove: 'panmove',
 	onPanStart: 'panstart',
 	onPinch: 'pinch',
 	onPinchCancel: 'pinchcancel',
