@@ -27,6 +27,8 @@
     "merge-stream": "^1.0.0",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-uglify": "^2.0.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "peerDependencies": {
@@ -37,6 +39,7 @@
     "react-dom": "global:ReactDOM"
   },
   "scripts": {
+    "build:iife": "rollup -c",
     "build": "NODE_ENV=production gulp build",
     "bump": "gulp bump",
     "bump:minor": "gulp bump:minor",
