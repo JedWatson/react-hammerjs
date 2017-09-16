@@ -1,5 +1,4 @@
 import React from 'react'
-import 'hammerjs'
 console.log('hi', Hammer)
 
 var privateProps = {
@@ -95,7 +94,7 @@ function updateHammer (hammer, props) {
 	});
 }
 
-var HammerComponent = React.createClass({
+export default React.createClass({
 
 	displayName: 'Hammer',
 
@@ -144,5 +143,3 @@ var HammerComponent = React.createClass({
 		return React.cloneElement(React.Children.only(this.props.children), props);
 	}
 });
-
-module.exports = HammerComponent;
