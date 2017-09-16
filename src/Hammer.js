@@ -96,13 +96,9 @@ function updateHammer (hammer, props) {
 	});
 }
 
-export default React.createClass({
+export default class extends React.Component {
 
-	displayName: 'Hammer',
-
-	propTypes: {
-		className: React.PropTypes.string,
-	},
+	static displayName = 'ReactHammer'
 
 	componentDidMount: function () {
 		this.hammer = new Hammer(this.domElement);
