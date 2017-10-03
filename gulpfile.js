@@ -45,7 +45,14 @@ gulp.task('build:dist', ['prepare:dist'], function () {
 			standalone: COMPONENT_NAME
 		})
 		.transform(babelify.configure({
-			presets: ["es2015", "stage-0"],
+			presets: [
+				["env", {
+				  targets: {
+					browsers: ["last 2 versions", "ie 10"]
+				  },
+				}]
+			  ],
+			  'plugins': ['transform-class-properties'],
 			ignore: /(bower_components)|(node_modules)/
 		}))
 		.transform(shim);
