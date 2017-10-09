@@ -1,10 +1,10 @@
-var PropTypes = require('prop-types');
-var React = require('react');
-var ReactDOM = require('react-dom');
+import PropTypes from 'prop-types';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // require('hammerjs') when in a browser. This is safe because Hammer is only
 // invoked in componentDidMount, which is not executed on the server.
-var Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
+const Hammer = (typeof window !== 'undefined') ? require('hammerjs') : undefined;
 
 var privateProps = {
 	children: true,
@@ -19,7 +19,7 @@ var privateProps = {
  * ================
  */
 
-var handlerToEvent = {
+const handlerToEvent = {
 	action: 'tap press',
 	onDoubleTap: 'doubletap',
 	onPan: 'pan',
