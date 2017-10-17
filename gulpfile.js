@@ -11,7 +11,7 @@ var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
 var merge = require('merge-stream');
 var source = require('vinyl-source-stream');
-
+var babelify = require('babelify');
 
 /**
  * Config
@@ -44,6 +44,17 @@ gulp.task('build:dist', ['prepare:dist'], function () {
 	var standalone = browserify('./' + SRC_PATH + '/' + PACKAGE_FILE, {
 			standalone: COMPONENT_NAME
 		})
+		.transform(babelify.configure({
+			presets: [
+				["env", {
+				  targets: {
+					browsers: ["last 2 versions", "ie 10"]
+				  },
+				}]
+			  ],
+			  'plugins': ['transform-class-properties'],
+			ignore: /(bower_components)|(node_modules)/
+		}))
 		.transform(shim);
 
 	DEPENDENCIES.forEach(function (pkg) {
