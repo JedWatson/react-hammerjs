@@ -1,6 +1,6 @@
 {
   "name": "react-hammerjs",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "ReactJS / HammerJS integration. Support touch events in your React app.",
   "main": "src/Hammer.js",
   "author": "Jed Watson",
@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",    
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babelify": "^7.3.0",
     "browserify": "^14.4.0",
     "browserify-shim": "^3.8.12",
