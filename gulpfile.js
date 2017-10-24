@@ -26,6 +26,7 @@ var COMPONENT_NAME = 'Hammer';
 
 var DEPENDENCIES = [
 	'hammerjs',
+	'prop-types',
 	'react',
 	'react-dom',
 ];
