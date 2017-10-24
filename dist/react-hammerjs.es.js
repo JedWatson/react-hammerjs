@@ -1,11 +1,5 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('prop-types'), require('react')) :
-	typeof define === 'function' && define.amd ? define(['prop-types', 'react'], factory) :
-	(global.Hammer = factory(global.PropTypes,global.React));
-}(this, (function (PropTypes,React) { 'use strict';
-
-PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
-React = React && React.hasOwnProperty('default') ? React['default'] : React;
+import PropTypes from 'prop-types';
+import React from 'react';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -175,6 +169,4 @@ HammerComponent.propTypes = {
 	className: PropTypes.string
 };
 
-return HammerComponent;
-
-})));
+export default HammerComponent;
