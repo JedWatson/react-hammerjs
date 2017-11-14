@@ -53,7 +53,7 @@ React-HammerJS wraps a React component, binding Hammer events to it so it can fi
 
 ### Example
 
-```
+```js
 var Hammer = require('react-hammerjs');
 
 // Default options
@@ -79,7 +79,7 @@ As a default, the `pinch` and `rotate` events are disabled in hammer.js, as they
 
 For example, to activate the `pinch` event on a `canvas` element:
 
-```
+```js
 <Hammer
     onPinch={handlePinch}
     options={{
