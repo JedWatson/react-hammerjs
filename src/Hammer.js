@@ -3,7 +3,7 @@ import React from 'react';
 
 // require('hammerjs') when in a browser. This is safe because Hammer is only
 // invoked in componentDidMount, which is not executed on the server.
-const Hammer = typeof window !== 'undefined' ? require('hammerjs') : undefined;
+const Hammer = typeof window !== 'undefined' && typeof document !== 'undefined' ? require('hammerjs') : undefined;
 
 var privateProps = {
 	children: true,
