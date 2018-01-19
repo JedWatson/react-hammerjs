@@ -149,7 +149,10 @@ var HammerComponent = function (_React$Component) {
 
 			var self = this;
 			props.ref = function (domElement) {
-				if (self.props.ref) {
+				if (self.props.children && self.props.children.ref) {
+					// If the child has the ref set, call the child's ref method
+					self.props.children.ref(domElement);
+				} else if (self.props.ref) {
 					self.props.ref(domElement);
 				}
 				self.domElement = domElement;
