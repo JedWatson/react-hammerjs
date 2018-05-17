@@ -44,6 +44,10 @@ React-HammerJS wraps a React component, binding Hammer events to it so it can fi
 * `onRotateMove`
 * `onRotateStart`
 * `onSwipe`
+* `onSwipeRight`
+* `onSwipeLeft`
+* `onSwipeUp`
+* `onSwipeDown`
 * `action` - like the `onTap` event handler but will also be fired `onPress`.
 
 ### Behavior properties
